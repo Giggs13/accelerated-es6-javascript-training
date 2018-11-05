@@ -17,7 +17,9 @@
     "url": "https://github.com/Giggs13/accelerated-es6-javascript-training/issues"
   },
   "homepage": "https://github.com/Giggs13/accelerated-es6-javascript-training#readme",
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^6.4.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",

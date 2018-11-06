@@ -5,44 +5,32 @@ let async = Object.getPrototypeOf(async function () {
 console.log(async);
 console.log("--------------------------------------");
 
-function waitASecond(seconds) {
-    return new Promise(resolve => {
-        console.log("Begin of function waitASecond()");
+function myAsyncFunction(condition, timeout, x) {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            seconds++;
-            resolve(seconds);
-        }, 1000);
-        console.log("End of function waitASecond()");
+            if (condition) {
+                resolve(x * 2);
+            } else {
+                reject("Unexpected error");
+            }
+        }, timeout);
     });
 }
 
-let result;
-
-waitASecond(3000)
-    .then(value => {
-        result = value;
-        console.log(`Final seconds from a function waitASecond(): ${ value }`)
-    });
-
-setTimeout(() => {}, 5000);
-console.log(`Seconds are ${ result }`);
-console.log("--------------------------------------");
-
-/*
-function myAsyncFunction() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('resolved');
-        }, 3000);
-    });
-}
+console.log("Before async");
 
 async function asyncCall() {
-    console.log('before calling');
-    let result = await myAsyncFunction();
-    console.log('after calling');
-    return result;
+    console.log('before');
+    let result1 = await myAsyncFunction(true, 3000, 2);
+    console.log('first is done');
+    let result2 = await myAsyncFunction(false, 5000, 3);
+    console.log('second is done');
+    let result3 = await myAsyncFunction(true, 2000, 4);
+    console.log('third is done');
+
+    return result1 + result2 + result3;
 }
 
-asyncCall()
-    .then(value => console.log(value));*/
+console.log('outside of async function');
+
+asyncCall().then(value => console.log(value), error => console.log(error));

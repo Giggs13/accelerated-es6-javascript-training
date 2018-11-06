@@ -34,3 +34,13 @@ let descriptor = Object.getOwnPropertyDescriptors(person);
 console.log(descriptor);
 console.log(descriptor.name);
 console.log(descriptor.none);
+
+console.log("--------------------------------------");
+let arr = [
+    1,
+    2,
+    3,
+];
+
+console.log(arr);
+console.log(arr.length);
